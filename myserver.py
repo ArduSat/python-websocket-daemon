@@ -319,8 +319,8 @@ class EchoServerProtocol(WebSocketServerProtocol):
                 print "protocols " + str(request.protocols)
 
                 #TODO: For development purposes only. Fix this so it doesn't work for null (localhost) as well.
-                # if(request.peer.host != "127.0.0.1" or (request.origin != "null" and request.origin != "http://codebender.cc")):
-                #         raise HttpException(httpstatus.HTTP_STATUS_CODE_UNAUTHORIZED[0], "You are not authorized for this!")
+                if(request.peer.host != "127.0.0.1" or (request.origin != "null" and request.origin != "http://codebender.cc")):
+                        raise HttpException(httpstatus.HTTP_STATUS_CODE_UNAUTHORIZED[0], "You are not authorized for this!")
 
         def onOpen(self):
                 self.factory.register(self)
@@ -457,9 +457,9 @@ class WebSerialProtocol(WebSocketServerProtocol):
                 print "protocols " + str(request.protocols)
 
                 #TODO: For development purposes only. Fix this so it doesn't work for null (localhost) as well.
-                # if(request.peer.host != "127.0.0.1" or (request.origin != "null" and request.origin != "http://codebender.cc")):
-                #         self.connection_invalid = True
-                #         raise HttpException(httpstatus.HTTP_STATUS_CODE_UNAUTHORIZED[0], "You are not authorized for this!")
+                if(request.peer.host != "127.0.0.1" or (request.origin != "null" and request.origin != "http://codebender.cc")):
+                        self.connection_invalid = True
+                        raise HttpException(httpstatus.HTTP_STATUS_CODE_UNAUTHORIZED[0], "You are not authorized for this!")
 
                 global serial_port
                 global serial_device
